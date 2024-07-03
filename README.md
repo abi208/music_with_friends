@@ -1,5 +1,9 @@
 # music_with_friends
 
-Helloooo
+This is a spotify web app where you can see your own spotify data.
 
-Hi dom fox
+To run use the command `npm run dev`
+
+## About the Ownere
+
+We are Abi and Dom from Cambridge. Hello.
