@@ -14,6 +14,16 @@ if (!code) {
     populateUI(profile);
 }
 
+// Making HTTP requests to the API endpoint
+
+// async function fetchProfile(code: string): Promise<UserProfile> {
+//     const result = await fetch("https://api.spotify.com/v1/me", {
+//         method: "GET", headers: { Authorization: `Bearer ${code}` }
+//     });
+
+//     return await result.json();
+// }
+
 async function fetchProfile(code: string): Promise<UserProfile> {
     const result = await fetch("https://api.spotify.com/v1/me", {
         method: "GET", headers: { Authorization: `Bearer ${code}` }
@@ -32,4 +42,5 @@ function populateUI(profile: UserProfile) {
     document.getElementById("url")!.innerText = profile.href;
     document.getElementById("url")!.setAttribute("href", profile.href);
     document.getElementById("imgUrl")!.innerText = profile.images[0].url;
+    document.getElementById("followers")!.innerText = profile.followers.total;
 }
