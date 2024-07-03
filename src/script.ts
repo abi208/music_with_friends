@@ -11,28 +11,34 @@ if (!code) {
 } else {
     const accessToken = await getAccessToken(clientId, code);
     const profile = await fetchProfile(accessToken);
-    populateUI(profile);
+    const playback = await fetchPlaybackState(accessToken);
+    populateProfileUI(profile);
+    populatePlaybackUI(playback);
 }
 
 // Making HTTP requests to the API endpoint
 
-// async function fetchProfile(code: string): Promise<UserProfile> {
-//     const result = await fetch("https://api.spotify.com/v1/me", {
-//         method: "GET", headers: { Authorization: `Bearer ${code}` }
-//     });
-
-//     return await result.json();
-// }
-
+// Fetching Profile Data
 async function fetchProfile(code: string): Promise<UserProfile> {
-    const result = await fetch("https://api.spotify.com/v1/me", {
+        const result = await fetch("https://api.spotify.com/v1/me", {
+                method: "GET", headers: { Authorization: `Bearer ${code}` }
+        });
+
+        return await result.json();
+}
+
+async function fetchPlaybackState(code: string): Promise<UserPlayback> {
+    const result = await fetch("https://api.spotify.com/v1/me/player", {
         method: "GET", headers: { Authorization: `Bearer ${code}` }
     });
 
     return await result.json();
 }
 
-function populateUI(profile: UserProfile) {
+// Populate page with datas
+
+// Populating Profile Data
+function populateProfileUI(profile: UserProfile) {
     document.getElementById("displayName")!.innerText = profile.display_name;
     document.getElementById("avatar")!.setAttribute("src", profile.images[0].url)
     document.getElementById("id")!.innerText = profile.id;
@@ -43,4 +49,12 @@ function populateUI(profile: UserProfile) {
     document.getElementById("url")!.setAttribute("href", profile.href);
     document.getElementById("imgUrl")!.innerText = profile.images[0].url;
     document.getElementById("followers")!.innerText = profile.followers.total;
+}
+
+// Populating Playback Data
+function populatePlaybackUI(playback: UserPlayback) {
+    document.getElementById("name")!.innerText = playback.item.name;
+    document.getElementById("artists")!.innerText = playback.item.artists.map(artist => artist.name).join(", ");
+    document.getElementById("currentlyPlayingType")!.innerText = playback.currently_playing_type;
+    document.getElementById("progressMs")!.innerText = playback.progress_ms;
 }
