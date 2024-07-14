@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Home</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="login">
+        <h1>Log in to enter</h1>
+        <a href="/login" class="btn btn-primary">Log in with Spotify</a>
+      </div>
+      <div id="loggedin">
+        <div id="user-profile">
+        </div>
+        <div id="user-player">
+        </div>
+        <div id="oauth">
+        </div>
+        <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
+      </div>
+    </div>
+
+    <script id="user-profile-template" type="text/x-handlebars-template">
+      <h1>Logged in as {{display_name}}</h1>
+      
+        <div>
+          <dl>
+            <dt>Display name</dt><dd>{{display_name}}</dd>
+            <dt>Id</dt><dd>{{id}}</dd>
+            <dt>Email</dt><dd>{{email}}</dd>
+            <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
+            <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
+            <dt>Profile Image</dt><dd><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
+            <dt>Country</dt><dd>{{country}}</dd>
+            <dt>Subscription</dt><dd>{{product}}</dd>
+          </dl>
+        </div>
+    </script>
+
+    <script id="user-player-template" type="text/x-handlebars-template">
+      <h1>What am I listening to right now?</h1>
+      
+        <div>
+          <dl>
+            <dt>Currently Playing Type</dt><dd>{{currently_playing_type}}</dd>
+            <dt>Song Title</dt><dd>{{item.name}}</dd>
+            <dt>Artist(s)</dt><dd>{{join item.artists ", "}}</dd>
+            <dt>Progress (ms)</dt><dd>{{progress_ms}}</dd>
+            
+          </dl>
+        </div>
+    </script>
+
+    <script id="oauth-template" type="text/x-handlebars-template">
+      <h2>oAuth info</h2>
+      <dl class="dl-horizontal">
+        <dt>Access token</dt><dd>{{access_token}}</dd>
+        <dt>Refresh token</dt><dd>{{refresh_token}}</dd>
+      </dl>
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="/src/script.js"></script>
+  </body>
+</html>

@@ -1,15 +1,23 @@
 {
-  "name": "spotify-profile-demo",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "spotify-authorization-code-example",
+  "version": "0.0.2",
+  "description": "Spotify Authorization Code flow example",
+  "author": "Spotify",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "start": "node app.js"
   },
   "devDependencies": {
     "typescript": "^5.2.2",
     "vite": "^5.3.1"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "node-fetch": "^3.3.2",
+    "querystring": "^0.2.1",
+    "request": "^2.88.2"
   }
 }
