@@ -11,7 +11,8 @@
     <button id="getFriendData">Get Friend Data</button>
     <button id="toHomePage">Go to Home Page</button>
     
-    <div id="friendData"></div>
+    <div id="friend-profile"></div>
+    <div id="friend-playlist"></div>
 
     <script id="friend-profile-template" type="text/x-handlebars-template">
         <dl>
@@ -20,6 +21,18 @@
             <dt>Profile Image</dt><dd><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
         </dl>
     </script>
+
+    <script id="friend-playlist-template" type="text/x-handlebars-template">
+        <h1>Playlists:</h1>
+        
+        <div>
+          <dl>
+            {{#each items}}
+              <dd>{{this.name}}</dd>
+            {{/each}}
+          </dl>
+        </div>
+      </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>

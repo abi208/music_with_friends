@@ -22,6 +22,10 @@
       userPlayerTemplate = Handlebars.compile(userPlayerSource),
       userPlayerPlaceholder = document.getElementById('user-player');
 
+  var userPlaylistSource = document.getElementById('user-playlist-template').innerHTML,
+      userPlaylistTemplate = Handlebars.compile(userPlaylistSource),
+      userPlaylistPlaceholder = document.getElementById('user-playlist');
+
   var oauthSource = document.getElementById('oauth-template').innerHTML,
       oauthTemplate = Handlebars.compile(oauthSource),
       oauthPlaceholder = document.getElementById('oauth');
@@ -58,7 +62,7 @@
           $('#login').hide();
           $('#loggedin').show();
 
-          // Second API request to get player information
+          // API request to get player information
           $.ajax({
             url: 'https://api.spotify.com/v1/me/player',
             headers: {
@@ -69,6 +73,20 @@
             },
             error: function() {
               console.log('Failed to fetch player information.');
+            }
+          });
+
+          // API request to get profile information
+          $.ajax({
+            url: 'https://api.spotify.com/v1/me/playlists',
+            headers: {
+              'Authorization': 'Bearer ' + access_token
+            },
+            success: function(playlistResponse) {
+              userPlaylistPlaceholder.innerHTML = userPlaylistTemplate(playlistResponse);
+            },
+            error: function() {
+              console.log('Failed to fetch playlist information.');
             }
           });
         },

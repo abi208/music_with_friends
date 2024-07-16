@@ -16,6 +16,7 @@
         <button id="toFriendsPage">Go to Friends Page</button>
         <div id="user-profile"></div>
         <div id="user-player"></div>
+        <div id="user-playlist"></div>
         <div id="oauth"></div>
         <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
       </div>
@@ -50,6 +51,19 @@
           </dl>
         </div>
     </script>
+
+    <script id="user-playlist-template" type="text/x-handlebars-template">
+      <h1>Playlists:</h1>
+      
+      <div>
+        <dl>
+          {{#each items}}
+            <dd>{{this.name}}</dd>
+          {{/each}}
+        </dl>
+      </div>
+    </script>
+    
 
     <script id="oauth-template" type="text/x-handlebars-template">
       <h2>oAuth info</h2>
