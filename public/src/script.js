@@ -3,6 +3,7 @@
    * Obtains parameters from the hash of the URL
    * @return Object
    */
+
   function getHashParams() {
     var hashParams = {};
     var e, r = /([^&;=]+)=?([^&;]*)/g,
@@ -95,5 +96,9 @@
         });
       });
     }, false);
+
+    document.getElementById('toFriendsPage').addEventListener('click', function() {
+      window.location.href = '/friends.html#access_token=' + access_token;
+    });
   }
 })();
